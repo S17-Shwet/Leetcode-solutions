@@ -1,15 +1,17 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-       
-        int n=nums.size();
-        int Sum=n*(n+1)/2;
-        int sum=0;
+       int n=nums.size();
 
-        for(int i=0;i<n;i++)
-        {
-           sum=sum+nums[i];
-        }
-        return Sum-sum;
+       int totalXOR=0,arrayXOR=0;
+       for(int i=0;i<=n;i++)
+       {
+        totalXOR=totalXOR^i;
+       }
+       for(int num: nums)
+       {
+        arrayXOR=arrayXOR^num;
+       }
+       return totalXOR^arrayXOR;
     }
 };
