@@ -45,18 +45,39 @@
 // The middle is at index size/2.
 
 // Return that node.
+// class Solution {
+// public:
+//     ListNode* middleNode(ListNode* head) {
+// vector<ListNode*> nodes;
+// ListNode* temp=head;
+
+// while(temp)
+// {
+//     nodes.push_back(temp);
+//     temp=temp->next;
+// }
+// return nodes[nodes.size()/2];
+//     }
+// };
+
+// ✅ Approach 3: Fast & Slow Pointers (Optimal)
+
+// Initialize two pointers: slow = head, fast = head.
+
+// Move slow by 1 step, fast by 2 steps each iteration.
+
+// When fast reaches the end, slow will be at the middle.
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+        ListNode* fast=head;
+        ListNode* slow=head;
 
-        vector<ListNode*> nodes;
-        ListNode* temp=head;
-
-        while(temp)
+        while(fast && fast->next)
         {
-            nodes.push_back(temp);
-            temp=temp->next;
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        return nodes[nodes.size()/2];
+        return slow;
     }
 };
