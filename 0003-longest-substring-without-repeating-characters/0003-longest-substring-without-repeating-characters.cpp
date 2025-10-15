@@ -31,30 +31,57 @@
 // };
 
 
+// sliding window 
+
+// class Solution {
+// public:
+//     int lengthOfLongestSubstring(string s) {
+
+//         unordered_set<char>st;
+
+//         int n=s.size(), maxLen=0, start=0,end=0;
+//         while(end < n)
+//         {
+//             if(st.find(s[end]) == st.end())
+//             {
+//                st.insert(s[end]);
+//                maxLen=max(maxLen,end-start+1);
+//                end++;
+             
+//             }
+//             else
+//             {
+//                 st.erase(s[start]);
+//                 start++;
+//             }
+
+//         }
+
+//  return maxLen;
+//     }
+// };
+
+// sliding window approach using hash map
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
 
-        unordered_set<char>st;
+        unordered_map<char,int> mp;
 
-        int n=s.size(), maxLen=0, start=0,end=0;
-        while(end < n)
+        int n=s.size(),start=0, maxLen=0;
+
+        for(int end=0;end<n;end++)
         {
-            if(st.find(s[end]) == st.end())
+            if(mp.find(s[end]) != mp.end())
             {
-               st.insert(s[end]);
-               maxLen=max(maxLen,end-start+1);
-               end++;
-             
+                //if character is already in map. move start to right to last occurence of 
+               start=max(mp[s[end]] + 1,start);
             }
-            else
-            {
-                st.erase(s[start]);
-                start++;
-            }
+            //updating last occurence of current character 
+            mp[s[end]]=end;//update new end
 
+            maxLen=max(maxLen,end-start+1);
         }
-
- return maxLen;
+        return maxLen;
     }
 };
