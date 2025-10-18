@@ -12,7 +12,7 @@ public:
         int longest=0;
         for(int num: s)
         {
-            if(!s.count(num-1))
+            if(s.count(num-1) == s.end())
             //if prev num is not start then start is num
             // 1 2 so 0 is not there then 1 is start of seq
 
@@ -21,7 +21,7 @@ public:
                 int streak=1;
 
                 //check if consecutive is there
-                while(s.count(current+1))
+                while(s.count(current+1) != s.end())
                 {
                     current++;
                     streak++;
