@@ -8,7 +8,7 @@ public:
         int top=0;//topmmost row index
         int bottom=matrix.size()-1;//bottommost row index
         int left=0;//leftmost col index
-        int right=matrix[0].size()-1;//first row of matrix and its size means col size
+        int right=matrix[0].size()-1;//first row of matrix and its size means col size rightmost col size
 
         while(top <= bottom && left <= right )
         {
@@ -25,7 +25,7 @@ public:
         {
             result.push_back(matrix[i][right]);
         }
-        //move thr right boundary left
+        //move the right boundary left
         right--;
 
         //traverse from right -> left along bottom row
